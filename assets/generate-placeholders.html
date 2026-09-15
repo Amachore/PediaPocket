@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PediaPocket Asset Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #5C6BC0;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #757575;
+            margin-bottom: 30px;
+        }
+        canvas {
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: block;
+        }
+        button {
+            background: #5C6BC0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 10px 10px 0;
+        }
+        button:hover {
+            background: #4A54A8;
+        }
+        .preview-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #FAFAFA;
+            border-radius: 8px;
+        }
+        .success {
+            color: #66BB6A;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .instructions {
+            background: #E8F2FF;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #5C6BC0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍼 PediaPocket Asset Generator</h1>
+        <p class="subtitle">Generate placeholder app icons and splash screens instantly</p>
+
+        <div class="preview-section">
+            <h3>1. App Icon (1024x1024)</h3>
+            <canvas id="iconCanvas" width="1024" height="1024"></canvas>
+            <button onclick="downloadIcon()">Download icon.png</button>
+            <button onclick="downloadAdaptiveIcon()">Download adaptive-icon.png</button>
+        </div>
+
+        <div class="preview-section">
+            <h3>2. Splash Screen (1284x2778)</h3>
+            <canvas id="splashCanvas" width="1284" height="2778" style="width: 320px; height: auto;"></canvas>
+            <button onclick="downloadSplash()">Download splash.png</button>
+        </div>
+
+        <div class="preview-section">
+            <h3>3. Favicon (48x48)</h3>
+            <canvas id="faviconCanvas" width="48" height="48"></canvas>
+            <button onclick="downloadFavicon()">Download favicon.png</button>
+        </div>
+
+        <div id="status"></div>
+
+        <div class="instructions">
+            <h4>📋 Instructions:</h4>
+            <ol>
+                <li>Click each "Download" button above</li>
+                <li>Save the files to your <code>assets/</code> folder</li>
+                <li>Replace the existing placeholder files</li>
+                <li>Restart Expo with <code>npx expo start --clear</code></li>
+            </ol>
+            <p><strong>Note:</strong> These are simple placeholders. For production, use a professional design tool or hire a designer.</p>
+        </div>
+    </div>
+
+    <script>
+        const COLORS = {
+            background: '#E8F2FF',      // Baby blue
+            foreground: '#5C6BC0',      // Indigo
+            text: '#212121',            // Dark text
+            white: '#FFFFFF'
+        };
+
+        // Draw App Icon
+        function drawIcon(canvas, size = 1024) {
+            const ctx = canvas.getContext('2d');
+            
+            // Background with gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, COLORS.background);
+            gradient.addColorStop(1, '#B3D9FF');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw baby bottle icon (simplified)
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const scale = size / 1024;
+            
+            ctx.fillStyle = COLORS.foreground;
+            
+            // Bottle body (rounded rectangle)
+            const bottleWidth = 200 * scale;
+            const bottleHeight = 400 * scale;
+            const bottleX = centerX - bottleWidth / 2;
+            const bottleY = centerY - bottleHeight / 2 + 50 * scale;
+            const radius = 40 * scale;
+            
+            ctx.beginPath();
+            ctx.moveTo(bottleX + radius, bottleY);
+            ctx.lineTo(bottleX + bottleWidth - radius, bottleY);
+            ctx.quadraticCurveTo(bottleX + bottleWidth, bottleY, bottleX + bottleWidth, bottleY + radius);
+            ctx.lineTo(bottleX + bottleWidth, bottleY + bottleHeight - radius);
+            ctx.quadraticCurveTo(bottleX + bottleWidth, bottleY + bottleHeight, bottleX + bottleWidth - radius, bottleY + bottleHeight);
+            ctx.lineTo(bottleX + radius, bottleY + bottleHeight);
+            ctx.quadraticCurveTo(bottleX, bottleY + bottleHeight, bottleX, bottleY + bottleHeight - radius);
+            ctx.lineTo(bottleX, bottleY + radius);
+            ctx.quadraticCurveTo(bottleX, bottleY, bottleX + radius, bottleY);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Bottle neck
+            const neckWidth = 80 * scale;
+            const neckHeight = 60 * scale;
+            const neckX = centerX - neckWidth / 2;
+            const neckY = bottleY - neckHeight;
+            
+            ctx.fillRect(neckX, neckY, neckWidth, neckHeight);
+            
+            // Nipple (circle)
+            ctx.beginPath();
+            ctx.arc(centerX, neckY - 20 * scale, 50 * scale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add "PP" text at bottom
+            ctx.fillStyle = COLORS.foreground;
+            ctx.font = `bold ${120 * scale}px -apple-system, BlinkMacSystemFont, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('PP', centerX, size - 80 * scale);
+        }
+
+        // Draw Splash Screen
+        function drawSplash(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = 1284;
+            const height = 2778;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, COLORS.background);
+            gradient.addColorStop(1, COLORS.white);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Draw centered icon (smaller version)
+            const iconSize = 300;
+            const iconX = (width - iconSize) / 2;
+            const iconY = (height - iconSize) / 2 - 200;
+            
+            // Create temporary canvas for icon
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = iconSize;
+            tempCanvas.height = iconSize;
+            drawIcon(tempCanvas, iconSize);
+            
+            ctx.drawImage(tempCanvas, iconX, iconY);
+            
+            // App name
+            ctx.fillStyle = COLORS.foreground;
+            ctx.font = 'bold 80px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('PediaPocket', width / 2, iconY + iconSize + 150);
+            
+            // Tagline
+            ctx.fillStyle = COLORS.text;
+            ctx.font = '40px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillText('Your Baby\'s Digital Companion', width / 2, iconY + iconSize + 220);
+        }
+
+        // Draw Favicon
+        function drawFavicon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = 48;
+            
+            // Background
+            ctx.fillStyle = COLORS.background;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Simple "P" letter
+            ctx.fillStyle = COLORS.foreground;
+            ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('P', size / 2, size / 2);
+        }
+
+        // Download functions
+        function downloadCanvas(canvas, filename) {
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                document.getElementById('status').innerHTML = 
+                    `<p class="success">✓ Downloaded ${filename}</p>`;
+                setTimeout(() => {
+                    document.getElementById('status').innerHTML = '';
+                }, 3000);
+            });
+        }
+
+        function downloadIcon() {
+            const canvas = document.getElementById('iconCanvas');
+            downloadCanvas(canvas, 'icon.png');
+        }
+
+        function downloadAdaptiveIcon() {
+            const canvas = document.getElementById('iconCanvas');
+            downloadCanvas(canvas, 'adaptive-icon.png');
+        }
+
+        function downloadSplash() {
+            const canvas = document.getElementById('splashCanvas');
+            downloadCanvas(canvas, 'splash.png');
+        }
+
+        function downloadFavicon() {
+            const canvas = document.getElementById('faviconCanvas');
+            downloadCanvas(canvas, 'favicon.png');
+        }
+
+        // Generate previews on load
+        window.onload = () => {
+            drawIcon(document.getElementById('iconCanvas'));
+            drawSplash(document.getElementById('splashCanvas'));
+            drawFavicon(document.getElementById('faviconCanvas'));
+        };
+    </script>
+</body>
+</html>
