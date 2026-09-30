@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DashboardScreen from '../screens/DashboardScreen';
 import BabyBookScreen from '../screens/BabyBookScreen';
@@ -52,5 +53,5 @@ export default function ParentNavigator() {
 
 // Simple icon component using emoji
 const TabIcon = ({ icon, color }) => {
-  return <text style={{ fontSize: 24, color }}>{icon}</text>;
+  return <Text style={{ fontSize: 24, color }}>{icon}</Text>;
 };
