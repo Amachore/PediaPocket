@@ -1,6 +1,22 @@
 {
   "name": "pediapocket",
   "version": "1.0.0",
+  "description": "Offline-first baby activity tracker bridging parents and caregivers. MVP developed with significant AI assistance.",
+  "author": "Amachore",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Amachore/PediaPocket.git"
+  },
+  "keywords": [
+    "baby-tracker",
+    "react-native",
+    "expo",
+    "offline-first",
+    "parenting",
+    "childcare",
+    "ai-assisted"
+  ],
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",

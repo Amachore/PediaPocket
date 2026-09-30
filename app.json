@@ -3,6 +3,7 @@
     "name": "PediaPocket",
     "slug": "pediapocket",
     "version": "1.0.0",
+    "description": "Offline-first baby activity tracker bridging parents and caregivers. Phase 1 MVP developed with AI assistance (Claude/Kiro). Concept, design, and architecture by human developer.",
     "sdkVersion": "57.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

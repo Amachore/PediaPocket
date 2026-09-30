@@ -2,6 +2,14 @@
 
 An offline-first mobile application that acts as a shared digital baby book and daily activity tracker, bridging the information gap between working parents and at-home caregivers.
 
+> **⚠️ AI Assistance Disclosure**: This project was developed with significant assistance from AI pair programming tools (Claude/Kiro AI IDE). AI was used for:
+> - Component architecture and code generation
+> - UI component library implementation
+> - Documentation generation
+> - Code structure and best practices guidance
+> 
+> The project concept, feature design, user flows, and technical decisions were human-driven.
+
 ## 🎯 Phase 1 MVP Features
 
 ### ✅ Implemented
@@ -190,6 +198,23 @@ PediaPocket/
 
 ## 🚀 Next Steps for Production
 
+### ⚠️ Current Status (Phase 1 MVP)
+**Completion: 95%** - Fully functional, minor assets needed
+
+**Remaining Tasks:**
+- [ ] Generate app icon and splash screen (5 minutes)
+  - Open `assets/generate-placeholders.html` in browser
+  - Download icon.png, adaptive-icon.png, splash.png, favicon.png
+  - Place files in `assets/` folder
+- [ ] Run `npx expo start --clear` to test with new assets
+
+**Known Limitations:**
+- Mock authentication (no real login system)
+- Single baby per app instance
+- No image uploads
+- No push notifications
+- Client-side date filtering (no pagination)
+
 ### Phase 2: Cloud Integration
 - [ ] Setup Firebase project
 - [ ] Implement Firebase Authentication
@@ -238,6 +263,41 @@ This is a hackathon MVP prototype. For production deployment:
 ## 📄 License
 
 This is a prototype project for demonstration purposes.
+
+---
+
+## 🤖 AI Assistance & Attribution
+
+### Development Approach
+This project was developed with **significant AI pair programming assistance** using Claude (Anthropic) via the Kiro AI IDE. The collaboration model was:
+
+**Human Contributions:**
+- Product vision and feature requirements
+- User experience design decisions
+- Architecture and technical strategy
+- Code review and acceptance
+- Testing and validation
+- Problem definition and context
+
+**AI Contributions:**
+- Code generation and implementation
+- Component library architecture
+- Documentation generation
+- Best practices guidance
+- Bug identification and fixes
+- Boilerplate and repetitive code
+
+### Transparency Statement
+This disclosure is made in the spirit of transparency for hackathon evaluation. The use of AI tools represents a modern development workflow where:
+- The human remains the architect and decision-maker
+- AI serves as an intelligent code assistant
+- All code is reviewed, understood, and owned by the developer
+- The combination enables rapid prototyping while maintaining quality
+
+### Technology Stack
+- **Framework**: React Native with Expo 57
+- **AI Tools**: Claude (Anthropic), Kiro AI IDE
+- **Development**: Human-guided, AI-assisted pair programming
 
 ---
 
