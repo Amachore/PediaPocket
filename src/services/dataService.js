@@ -65,6 +65,16 @@ export const babyService = {
     const babies = await this.getAll();
     return babies.length > 0 ? babies[0] : null;
   },
+
+  async update(babyId, updates) {
+    const babies = await this.getAll();
+    const babyIndex = babies.findIndex(baby => baby.babyId === babyId);
+    if (babyIndex === -1) return null;
+
+    babies[babyIndex] = { ...babies[babyIndex], ...updates };
+    await storage.save(STORAGE_KEYS.BABIES, babies);
+    return babies[babyIndex];
+  },
 };
 
 // Log operations (core feature)
@@ -141,5 +151,15 @@ export const vaccineService = {
     vaccines.push(newVaccine);
     await storage.save(STORAGE_KEYS.VACCINES, vaccines);
     return newVaccine;
+  },
+
+  async update(vaccineId, updates) {
+    const vaccines = await this.getAll();
+    const vaccineIndex = vaccines.findIndex(vaccine => vaccine.vaccineId === vaccineId);
+    if (vaccineIndex === -1) return null;
+
+    vaccines[vaccineIndex] = { ...vaccines[vaccineIndex], ...updates };
+    await storage.save(STORAGE_KEYS.VACCINES, vaccines);
+    return vaccines[vaccineIndex];
   },
 };

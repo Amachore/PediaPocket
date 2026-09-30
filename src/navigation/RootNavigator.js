@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, Image, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from '../context/AuthContext';
 
@@ -15,7 +15,13 @@ export default function RootNavigator() {
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#007AFF" />
+        <Image
+          source={require('../../assets/PediaPocketLogo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+          accessibilityLabel="PediaPocket"
+        />
+        <ActivityIndicator size="small" color="#55C9A7" />
       </View>
     );
   }
@@ -38,6 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#E8F2FF',
+  },
+  logo: {
+    width: 176,
+    height: 176,
+    marginBottom: 20,
   },
 });

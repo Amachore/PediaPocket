@@ -6,13 +6,8 @@
     "description": "Offline-first baby activity tracker bridging parents and caregivers. Phase 1 MVP developed with AI assistance (Claude/Kiro). Concept, design, and architecture by human developer.",
     "sdkVersion": "57.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/PediaPocketLogo.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#E8F2FF"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -22,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/PediaPocketLogo.png",
         "backgroundColor": "#E8F2FF"
       },
       "package": "com.pediapocket.app"
@@ -31,7 +26,17 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/PediaPocketLogo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#E8F2FF"
+        }
+      ]
     ]
   }
 }

@@ -37,6 +37,12 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const updateBaby = async (updates) => {
+    if (!baby) return;
+    const updatedBaby = await babyService.update(baby.babyId, updates);
+    if (updatedBaby) setBaby(updatedBaby);
+  };
+
   const addLog = async (type, loggedBy) => {
     if (!baby) return { success: false, error: 'No baby data' };
 
@@ -96,6 +102,7 @@ export const DataProvider = ({ children }) => {
     addLog,
     deleteLog,
     refreshLogs,
+    updateBaby,
     getTodayLogs,
     getDailyCount,
   };

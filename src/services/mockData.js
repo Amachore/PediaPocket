@@ -20,6 +20,12 @@ export const MOCK_BABY = {
   name: 'Emma Johnson',
   birthdate: new Date('2026-01-15').toISOString(),
   photoUrl: null,
+  bloodType: 'O+',
+  allergies: [],
+  pediatricianName: 'Dr. Maya Patel',
+  pediatricianPhone: '(555) 010-2040',
+  clinicName: 'Bright Start Pediatrics',
+  visitQuestions: '',
 };
 
 export const MOCK_VACCINES = [

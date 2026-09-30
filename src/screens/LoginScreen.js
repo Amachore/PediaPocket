@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
@@ -40,7 +41,13 @@ export default function LoginScreen() {
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#007AFF" />
+        <Image
+          source={require('../../assets/PediaPocketLogo.png')}
+          style={styles.loadingLogo}
+          resizeMode="contain"
+          accessibilityLabel="PediaPocket"
+        />
+        <ActivityIndicator size="small" color="#55C9A7" />
       </View>
     );
   }
@@ -48,7 +55,12 @@ export default function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.logo}>👶</Text>
+        <Image
+          source={require('../../assets/PediaPocketLogo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+          accessibilityLabel="PediaPocket logo"
+        />
         <Text style={styles.title}>PediaPocket</Text>
         <Text style={styles.subtitle}>Choose your role to continue</Text>
 
@@ -88,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F2F7',
+    backgroundColor: '#E8F2FF',
   },
   content: {
     flex: 1,
@@ -97,7 +109,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logo: {
-    fontSize: 80,
+    width: 144,
+    height: 144,
+    marginBottom: 20,
+  },
+  loadingLogo: {
+    width: 160,
+    height: 160,
     marginBottom: 20,
   },
   title: {

@@ -18,6 +18,10 @@ export default function CaregiverScreen() {
   const [lastLogType, setLastLogType] = useState(null);
   const dailyCount = getDailyCount();
 
+  if (!currentUser) {
+    return null;
+  }
+
   const handleLogActivity = async (type) => {
     if (!baby) {
       Alert.alert('Error', 'No baby profile found');
